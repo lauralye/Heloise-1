@@ -110,7 +110,7 @@ export const NavLinks = styled(LinkS)`
     font-weight: bold;
     cursor: pointer;
 
-    &:active{
+    &:hover{
         border-bottom: 4px solid #01bf71;
     }
 

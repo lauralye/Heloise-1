@@ -16,7 +16,7 @@ const Navbar = ({toggle}) => {
         <Nav>
 
             <NavbarContainer>
-                <NavLogo onClick={toggle} to='/'>NetCounsel</NavLogo>
+                <NavLogo to='/'>NetCounsel</NavLogo>
                 <MobileIcon onClick={toggle}>
                     <FaBars/>
                 </MobileIcon>
@@ -31,7 +31,7 @@ const Navbar = ({toggle}) => {
                         <NavLinks to="services">Services</NavLinks>
                     </NavItem>
                     <NavItem>
-                        <NavLinks to="signup">Signup</NavLinks>
+                        <NavLinks to="admin">Admin Login</NavLinks>
                     </NavItem>
                     <NavBtn>
                     <NavBtnLink to="/signin" >Sign In</NavBtnLink>
