@@ -4,13 +4,21 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/ui-react": "^2.15.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^4.3.19",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-scroll": "^1.8.6",
+    "react-tinder-card": "^1.4.5",
+    "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
