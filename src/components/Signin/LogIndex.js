@@ -283,6 +283,10 @@ const LogIn = () => {
   //const userAttribute = [];
 
   // for RP user
+  const loadRefreshContent = () =>{
+		window.location.reload();
+	}
+
   const { authenticate, authenticateAdmin} = useContext(AccountContext);
 
   const onSubmit = event => {
@@ -293,7 +297,9 @@ const LogIn = () => {
     })
     .catch(err =>{
         console.error('Failed to Log In!', err)
-    })
+    });
+
+    loadRefreshContent();
 
   };
 
@@ -310,6 +316,8 @@ const LogIn = () => {
     .catch(err =>{
         console.error('Failed to Log In!', err)
     })
+
+    
 
   };
 

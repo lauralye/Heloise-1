@@ -37,9 +37,9 @@ const Status = () =>{
 
 
     if(status){
-        return <RPuser/>
+        return <Navigate to='/rpuser'/>
     }else if (statusAdmin){
-
+        
         return <Admin/>
     }else {
         console.log("Not logged in!")

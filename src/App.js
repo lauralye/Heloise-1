@@ -29,8 +29,10 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/signup" element={<SignUp/>} /> {/*probably need special or hosting other server or have sub domain group name*/}
         <Route path="/login/*" element={<LogIn/>} />
+       
+       
         <Route path="/rpuser" element={<RPuser/>} />
-
+         
       </Routes>
       
     

@@ -30,6 +30,10 @@ const LogIn = () => {
          <LogIndex/>
         </HeroSectionLogin>
 
+{/* //keeps on looping the status probably */}
+        
+
+
         
        
         {/* <Route path="/rpuser" element={<Status />}>

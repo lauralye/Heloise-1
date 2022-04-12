@@ -1,12 +1,13 @@
 
-import React, {useState, useContext, useEffect} from 'react'
-import { Account, AccountContext } from '../components/Signin/Acconts'
-
+import React, {createContext, useEffect, useState} from 'react';
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { UserPool, AdminPool} from '../components/Signin/userpool';
+import {Navigate, Route, Routes} from 'react-router-dom'
 const RPuser = () => {
 
-    const { getSession, logout} = useContext(AccountContext);
+    // const { getSession, logout} = useContext(AccountContext);
 
-    const [status, setStatus] = useState(false);
+    // const [status, setStatus] = useState(false);
   //   useEffect(()=>{
   //     getSession()
   //     .then(session =>{
@@ -16,6 +17,46 @@ const RPuser = () => {
 
 
   // });
+//   const [status, setStatus] = useState(false);
+//   useEffect(()=>{
+//     getSession()
+//     .then(session =>{
+//         console.log('Session:', session);
+//         setStatus(true);
+//     })
+
+
+// });
+
+
+  const getSession = async () => await new Promise((resolve, reject) =>{
+
+    const user = UserPool.getCurrentUser();
+    if(user){
+        user.getSession((err, session)=>{
+            if(err){
+                reject();
+            }else{
+                resolve(session);
+            }
+        });
+    }else{
+        reject();
+    }
+})
+
+const logout = () =>{
+  const user = UserPool.getCurrentUser();
+  if(user){
+      user.signOut();
+      console.log("user logged out!")
+  }
+
+}
+
+// if(!status){
+//   return <Navigate to='/login'/>
+// }
 
   return (
     
