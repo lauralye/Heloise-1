@@ -4,11 +4,15 @@ import { AccountContext, Account } from './Acconts'
 import RPuser from '../../pages/RPuser'
 import LogIn from './LogIndex'
 import ProtectedRoutes from './ProtectedRoutes'
+import Admin from '../../pages/Admin'
 
 const Status = () =>{
 
     const [status, setStatus] = useState(false);
     const { getSession, logout} = useContext(AccountContext);
+
+    const [statusAdmin, setStatusAdmin] = useState(false);
+    const { getSessionAdmin, logoutAdmin} = useContext(AccountContext);
 
     useEffect(()=>{
         getSession()
@@ -20,14 +24,29 @@ const Status = () =>{
 
     });
 
-    if(!status){
-        return <h1>NOt Log in </h1>
+    
+    useEffect(()=>{
+        getSessionAdmin()
+        .then(session =>{
+            console.log('Session Admin:', session);
+            setStatusAdmin(true);
+        })
+
+
+    });
+
+
+    if(status){
+        return <RPuser/>
+    }else if (statusAdmin){
+
+        return <Admin/>
+    }else {
+        console.log("Not logged in!")
+        return null
+
     }
-    
-    return status
 
-
-    
     
 }
 
