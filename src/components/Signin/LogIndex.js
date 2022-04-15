@@ -283,9 +283,9 @@ const LogIn = () => {
   //const userAttribute = [];
 
   // for RP user
-  const loadRefreshContent = () =>{
-		window.location.reload();
-	}
+  // const loadRefreshContent = () =>{
+	// 	window.location.reload(location_URL);
+	// }
 
   const { authenticate, authenticateAdmin} = useContext(AccountContext);
 
@@ -299,7 +299,7 @@ const LogIn = () => {
         console.error('Failed to Log In!', err)
     });
 
-    loadRefreshContent();
+   // loadRefreshContent();
 
   };
 

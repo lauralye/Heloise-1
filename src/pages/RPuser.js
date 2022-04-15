@@ -3,6 +3,8 @@ import React, {createContext, useEffect, useState} from 'react';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { UserPool, AdminPool} from '../components/Signin/userpool';
 import {Navigate, Route, Routes} from 'react-router-dom'
+
+
 const RPuser = () => {
 
     // const { getSession, logout} = useContext(AccountContext);
@@ -27,6 +29,7 @@ const RPuser = () => {
 
 
 // });
+const [logoutdirect, setLogoutdirect] =useState(false);
 
 
   const getSession = async () => await new Promise((resolve, reject) =>{
@@ -50,6 +53,7 @@ const logout = () =>{
   if(user){
       user.signOut();
       console.log("user logged out!")
+      setLogoutdirect(true)
   }
 
 }
@@ -63,6 +67,7 @@ const logout = () =>{
     <div>
         <h1>Main Page for RP after logged In</h1>
         <button onClick={logout}>Logout</button>
+        {logoutdirect ? <Navigate to='/login'/> : null}
     </div>
   
   )

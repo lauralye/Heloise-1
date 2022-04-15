@@ -5,7 +5,7 @@ import RPuser from '../../pages/RPuser'
 import LogIn from './LogIndex'
 import ProtectedRoutes from './ProtectedRoutes'
 import Admin from '../../pages/Admin'
-
+import { useNavigate } from 'react-router-dom';
 const Status = () =>{
 
     const [status, setStatus] = useState(false);
@@ -13,6 +13,8 @@ const Status = () =>{
 
     const [statusAdmin, setStatusAdmin] = useState(false);
     const { getSessionAdmin, logoutAdmin} = useContext(AccountContext);
+
+
 
     useEffect(()=>{
         getSession()
@@ -34,13 +36,19 @@ const Status = () =>{
 
 
     });
+    // const navigate = useNavigate();
+
+    //     const routeChange = (path) =>{
+    //         navigate(path)
+
+    //     }
 
 
     if(status){
         return <Navigate to='/rpuser'/>
     }else if (statusAdmin){
         
-        return <Admin/>
+        return <Navigate to='/admin'/>
     }else {
         console.log("Not logged in!")
         return null

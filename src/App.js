@@ -15,6 +15,8 @@ import LogIn from './pages/signin';  //careful of the naming component name with
 import RPuser from './pages/RPuser'
 import Status from './components/Signin/Status'
 import  {Account}  from './components/Signin/Acconts';
+import Admin from './pages/Admin';
+import Request from './pages/Request';
 
 
 Amplify.configure(awsExports);
@@ -32,6 +34,10 @@ function App() {
        
        
         <Route path="/rpuser" element={<RPuser/>} />
+        <Route path="/admin" element={<Admin/>} />
+         <Route path="/request" element={<Request/>} />
+
+
          
       </Routes>
       

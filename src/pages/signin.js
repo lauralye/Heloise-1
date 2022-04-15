@@ -24,9 +24,9 @@ const LogIn = () => {
     <Account>   
        <Sidebar isOpen={isOpen} toggle={toggle}/>
         <Navbar toggle={toggle}/>
-
+        <Status/>
         <HeroSectionLogin>
-          <Status/>
+          
          <LogIndex/>
         </HeroSectionLogin>
 
