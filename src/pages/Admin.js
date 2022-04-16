@@ -58,21 +58,47 @@ const Admin = () => {
     
     }
 
-    const fetchData = () =>{
+    useEffect(()=>{
+      const fetchData = async()=>{
+        try{
+          const response = await axios.get("https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev")
+          setData(response.data)
+          console.log(data)
 
-      return axios.get("https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev")
-      .then((response)=> setData(response.json));
-      
+        }catch (err){
+          if(err.response){
+            //not in 200 response range
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);
+
+          }else{
+            console.log(`Error: ${err.message}`)
+          }
+            
+        }
+      }
+      fetchData();
+
     }
 
-    useEffect(() =>{
-      fetchData()
-      
-      console.log(data)
-     
-    }, []
-
     )
+
+    // const fetchData = () =>{
+
+    //   return axios.get("https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev")
+    //   .then((response)=> setData(response.json));
+      
+    // }
+
+    // useEffect(() =>{
+    //   fetchData()
+      
+    //   console.log(data)
+     
+    // }, []
+
+    // )
 
   //  async function fetchData (){
   //     const apiData = await API.get('MockApi', '/')
@@ -100,15 +126,40 @@ const Admin = () => {
     
     <div>
     <h1>Main Page for Admin after logged In</h1>
+
+    {/* {
+      Object.keys(data).map((key, i)=> (
+        <p key={i}>
+          <span>Key Name: {key}</span>
+          <span>Value: {data[key]}</span>
+        </p>
+      )
+
+      )
+    } */}
     {/* <Arrayobject/> */}
-    {/* <p>{data[0].id}</p>
-     */}
+    {/* <p>{data.id}</p> */}
+    
       {/* <ul>
       
         {data.map(s => (<li>{s}</li>))}
 
    
       </ul> */}
+      
+        
+        {data.map((user) => ( 
+          <ul>
+          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>{user.email}</li>
+          </ul>
+          
+         
+         
+
+        ))}
+        
+   
     
     <button onClick={logoutAdmin}>Logout</button>
     {logoutdirect ? <Navigate to='/login'/> : null}
