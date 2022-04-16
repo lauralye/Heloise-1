@@ -63,7 +63,7 @@ const Admin = () => {
         try{
           const response = await axios.get("https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev")
           setData(response.data)
-          console.log(data)
+          //console.log(data)
 
         }catch (err){
           if(err.response){
@@ -148,16 +148,22 @@ const Admin = () => {
       </ul> */}
       
         
-        {data.map((user) => ( 
-          <ul>
-          <li key={user.id}>{user.name}</li>
-          <li key={user.id}>{user.email}</li>
-          </ul>
-          
-         
-         
+        {data.map((user) => {
+          const {
+            name,
+            email,
+            occupation
+        } = user;
+        return (<div key={user.id}>
+            <p>Name: {name}</p>
+            <p>Email: {email}</p>
+            <p>Job: {occupation}</p>
+        </div>)
 
-        ))}
+
+        } 
+
+        )}
         
    
     
