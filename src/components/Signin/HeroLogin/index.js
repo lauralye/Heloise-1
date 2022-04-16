@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Button} from '../../ButtonElements'
-import Video from '../../../videos/video.mp4'
+import { Video } from '../../../Data/mul';
+
 import { HeroContainer, HeroBg, VideoBg, HeroContent, HeroH1,HeroP, HeroBtnWrapper,
         ArrowForward, ArrowRight } from './HeroElements'
 
@@ -19,7 +20,7 @@ const HeroSectionLogin = (props) => {
     <HeroContainer id="/login">
        
         <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type='video/mp4'/>
+        <VideoBg autoPlay loop muted src={Video.backgroundvid} type='video/mp4'/>
         </HeroBg>
         <HeroContent>
             {props.children}

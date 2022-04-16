@@ -1,15 +1,20 @@
 {
-  "dev": {
+  "master": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-netcounselapp-dev-192343-authRole",
-      "UnauthRoleArn": "arn:aws:iam::054793751271:role/amplify-netcounselapp-dev-192343-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::054793751271:role/amplify-netcounselapp-dev-192343-authRole",
+      "AuthRoleName": "amplify-netcounselapp-master-62738-authRole",
+      "UnauthRoleArn": "arn:aws:iam::054793751271:role/amplify-netcounselapp-master-62738-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::054793751271:role/amplify-netcounselapp-master-62738-authRole",
       "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-netcounselapp-dev-192343-deployment",
-      "UnauthRoleName": "amplify-netcounselapp-dev-192343-unauthRole",
-      "StackName": "amplify-netcounselapp-dev-192343",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:054793751271:stack/amplify-netcounselapp-dev-192343/863db980-b7f7-11ec-bc2d-0a6bb015be2c",
-      "AmplifyAppId": "d3r54b5mfvlnst"
+      "DeploymentBucketName": "amplify-netcounselapp-master-62738-deployment",
+      "UnauthRoleName": "amplify-netcounselapp-master-62738-unauthRole",
+      "StackName": "amplify-netcounselapp-master-62738",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:054793751271:stack/amplify-netcounselapp-master-62738/503e9460-bd4e-11ec-856f-064917fcff0e",
+      "AmplifyAppId": "d1l2zv3vtbczge"
+    },
+    "categories": {
+      "auth": {
+        "Heloise1": {}
+      }
     }
   }
 }

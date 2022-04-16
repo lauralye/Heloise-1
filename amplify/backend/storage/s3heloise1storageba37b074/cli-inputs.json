@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3heloise1storageba37b074",
+  "bucketName": "heloise-1-storage-ba37b074",
+  "policyUUID": "5dee7760",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ]
+}
