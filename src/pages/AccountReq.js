@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar/index'
-import RequestPage from '../components/Request/index'
+
+import Req from '../components/Request/index'
 
 
-const Request = () => {
+const AccountReq = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,11 +18,11 @@ const Request = () => {
        
       <Sidebar isOpen={isOpen} toggle={toggle}/>
       <Navbar toggle={toggle}/>
-      <RequestPage />
+      <Req />
 
 
     </>
   )
 }
 
-export default Request
+export default AccountReq

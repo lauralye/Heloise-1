@@ -13,15 +13,17 @@ const Sidebar = ({isOpen, toggle}) => {
                 <SidebarLink onClick={toggle} to="/">
                    Home
                 </SidebarLink>
-                <SidebarLink to="/request" onClick={toggle}>
+                <SidebarLink to="/" onClick={toggle}>
                    Account Request
                 </SidebarLink>
-                <SidebarLink to="services" onClick={toggle}>
+                <SidebarLink to="/" onClick={toggle}>
                     Services
                 </SidebarLink>
                 <SidebarLink to="/" onClick={toggle}>
                     Contact Us
                 </SidebarLink>
+
+                
                 </SidebarMenu>
                 <SideBtnWrap>
                     <SidebarRoute to='/login' onClick={toggle}>Sign In</SidebarRoute>

@@ -38,14 +38,9 @@ export const Button = styled.button`
 
 
 const InfoSection = ({lightBg, id, imgStart,topLine, lightText, headline, darkText, 
-    description, buttonLabel, img, alt, primary, dark, dark2}) => {
+    description, buttonLabel, img, alt, primary, dark, dark2, routing}) => {
 
-        const navigate = useNavigate();
-
-        const routeChange = () =>{
-            navigate('/request')
-
-        }
+     
   return (
     <>
         <InfoContainer lightBg={lightBg} id={id} >
@@ -57,7 +52,7 @@ const InfoSection = ({lightBg, id, imgStart,topLine, lightText, headline, darkTe
                         <Heading lightText={lightText}>{headline}</Heading>
                         <Subtitle darkText={darkText}>{description}</Subtitle>
                         <BtnWrap>
-                            <Button onClick={routeChange}
+                            <Button onClick={routing}
                             smooth={true} duration={500} spy={true} exact={true}
                             offset={-80} primary={primary ? 1 : 0} dark={dark ? 1 : 0} dark2={dark2 ?1:0}
                             >{buttonLabel}</Button>

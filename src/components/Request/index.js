@@ -2,12 +2,12 @@ import React, {useState} from 'react'
 import {Button} from '../ButtonElements'
 // import image
 import Paper from '@mui/material/Paper';
-import network from '../../images/network.jpg'
+
 import network2 from '../../images/svg-3.svg'
-import { FormWrapper, FormText,HeroContainer, HeroBg, ImgBg, HeroContent, HeroH1,HeroP, HeroBtnWrapper,
-        ArrowForward, ArrowRight } from './HeroElements'
-import Stack from '@mui/material/Stack';
-import { styled, useTheme } from '@mui/material/styles';
+import { ButtonB,FormWrapper,HeroContainer, HeroBg, ImgBg, HeroContent, HeroH1
+        } from './HeroElements'
+
+import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 
 // import Amplify, { Storage } from 'aws-amplify';
@@ -17,14 +17,14 @@ import TextField from '@mui/material/TextField';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
+
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-const HeroSection = () => {
+const Req = () => {
 
     const [hover, setHover] = useState(false)
 
@@ -43,13 +43,13 @@ const HeroSection = () => {
         
     // }, )
     
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      }));
+    // const Item = styled(Paper)(({ theme }) => ({
+    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    //     ...theme.typography.body2,
+    //     padding: theme.spacing(1),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    //   }));
       
     
       const [job, setJob] = useState('');
@@ -221,7 +221,7 @@ const HeroSection = () => {
 
             </form>
             
-            <Button sx={{ m: 2, width: 480}} variant="contained">Submit Your Request</Button>
+            <ButtonB sx={{ m: 2, width: 480}} variant="contained">Submit Your Request</ButtonB>
            
         </FormWrapper>
         
@@ -233,4 +233,4 @@ const HeroSection = () => {
 
   );
 };
-export default HeroSection;
+export default Req
