@@ -11,12 +11,13 @@ import {Link as LinkS}  from  'react-scroll'
 
 export const Nav = styled.nav`
 
-    background: #000; /////////
+    background: #0d0f0f; /////////
     height: 80px;
-    margin-top: -80px;
+    // margin-top: -80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
     font-size: 1rem;
     position: sticky;
     top: 0;
@@ -99,7 +100,7 @@ export const NavItem = styled.li`
 
 `;
 
-export const NavLinks = styled(LinkR)`
+export const NavLinks = styled(LinkS)`
 
     color: #fff;
     display: flex;
@@ -111,7 +112,7 @@ export const NavLinks = styled(LinkR)`
     cursor: pointer;
 
     &:hover{
-        border-bottom: 4px solid #56e8e3;
+        border-bottom: 4px solid #01bf71;
     }
 
 
@@ -132,7 +133,7 @@ export const NavBtn = styled.nav`
 
 `;
 
-export const NavBtnLink = styled(LinkR)`
+export const NavBtnLink = styled.button`
 
     border-radius: 50px;
     background: #56e8e3;
