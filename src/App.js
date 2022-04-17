@@ -17,6 +17,7 @@ import Status from './components/Signin/Status'
 import  {Account}  from './components/Signin/Acconts';
 import Admin from './pages/Admin';
 import Request from './pages/Request';
+import Explore from './pages/Explore';
 
 
 Amplify.configure(awsExports);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/signup" element={<SignUp/>} /> {/*probably need special or hosting other server or have sub domain group name*/}
         <Route path="/login/*" element={<LogIn/>} />
+        <Route path="/explore" element={<Explore/>} />
        
        
         <Route path="/rpuser" element={<RPuser/>} />

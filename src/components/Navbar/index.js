@@ -25,11 +25,12 @@ const Navbar = ({toggle}) => {
                         <NavLinks  to="/" >Home Page</NavLinks>
                     </NavItem>
                     <NavItem>
-                        <NavLinks to="/request">Account Request</NavLinks>
+                        <NavLinks to="/explore">Exlpore Now</NavLinks>
                     </NavItem>
                     <NavItem>
-                        <NavLinks to="/">Services</NavLinks>
+                        <NavLinks to="/request">Account Request</NavLinks>
                     </NavItem>
+                   
                     <NavItem>
                         <NavLinks to="/">Contact Us</NavLinks>
                     </NavItem>

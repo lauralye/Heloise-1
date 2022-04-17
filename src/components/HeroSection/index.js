@@ -43,7 +43,7 @@ const HeroSection = () => {
             <HeroH1>Wi-Fi Planning Made Easy</HeroH1>
             <HeroP>Explore and Configure Today</HeroP>
         <HeroBtnWrapper>
-            <Button to="/" onMouseEnter={onHover} onMouseLeave={onHover} primary={true} dark={true}>
+            <Button to="/explore" onMouseEnter={onHover} onMouseLeave={onHover} primary={true} dark={true}>
                 Get Started {hover? <ArrowForward/> : <ArrowRight/>}
             </Button>
         </HeroBtnWrapper>
