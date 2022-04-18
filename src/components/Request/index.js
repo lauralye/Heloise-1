@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import {Button} from '../ButtonElements'
+
 // import image
 import Paper from '@mui/material/Paper';
 
 import network2 from '../../images/svg-3.svg'
-import { ButtonB,FormWrapper,HeroContainer, HeroBg, ImgBg, HeroContent, HeroH1
+import {ButtonB,FormWrapper,HeroContainer, HeroBg, ImgBg, HeroContent, HeroH1
         } from './HeroElements'
 
 import { useTheme } from '@mui/material/styles';
@@ -23,40 +23,120 @@ import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import axios from 'axios';
+
 
 const Req = () => {
 
     const [hover, setHover] = useState(false)
+    const [postdata, setPostdata] = useState([])
+
+
+// handle POST operation //////////
+
+
+const [name, setName] = useState('')
+const [email, setEmail] = useState('')
+const [occupation, setOccupation] = useState('')
+const [company, setCompany] = useState('')
+const [qualifications, setQua] = useState([])
+const [reason, setReason] = useState('Justify Your Application...')
+const [conarray, setConarray] = useState('')
+
+
+const handleName =(event) =>{
+  setName(event.target.value)
+}
+
+const handleEmail =(event) =>{
+  setEmail(event.target.value)
+}
+
+const handleChange = (event) => {
+  setOccupation(event.target.value);
+};
+
+const handleCompany =(event) =>{
+  setCompany(event.target.value)
+}
+
+const handleQua = (event) => {
+
+  // setQua(event.target.value)
+  // console.log(setQua)
+  const {
+  target: { value },
+  } = event;
+  setQua(
+  // On autofill we get a stringified value.
+  typeof value === 'string' ? value.join(',') : value,
+  );
+  const str = qualifications.join(', ');
+  setConarray(str);
+  
+};
+
+const handleReason =(event) =>{
+  setReason(event.target.value)
+}
+
+
+const handleSubmit = async (e)=>{
+  e.preventDefault()
+  //setPostdata({name, email, occupation, company, qualifications, reason})
+ // console.log(postdata)
+
+  const newRequest = {
+    name: name,
+    email: email,
+    occupation: occupation,
+    company: company,
+  //  qualifications: qualifications,
+    reason: reason
+
+  }
+
+  try{
+
+    const response = await axios.post('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/', 
+    JSON.stringify({
+      name: name,
+      email: email,
+      occupation: occupation,
+      company: company,
+      qualifications: conarray,
+      reason: reason
+
+    }))
+
+    console.log(response.data)
+
+  }catch (err){
+
+    console.log(`Error: ${err.message}`)
+  }
+ 
+}
+
+
+
+////////////////////
+
+
+
+
+
 
     const onHover = () =>{
         setHover(!hover)
     }
 
 
-    // useEffect(() => {
-
-    //     const file = await Storage.get("video.mp4", {
-    //         level: "public"
-    //     });
-    
-     
-        
-    // }, )
-    
-    // const Item = styled(Paper)(({ theme }) => ({
-    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    //     ...theme.typography.body2,
-    //     padding: theme.spacing(1),
-    //     textAlign: 'center',
-    //     color: theme.palette.text.secondary,
-    //   }));
       
     
-      const [job, setJob] = useState('');
+  
 
-      const handleChange = (event) => {
-        setJob(event.target.value);
-      };
+   
 
 
       //chip select for qualifications
@@ -92,15 +172,7 @@ const Req = () => {
       const theme = useTheme();
      const [skill, setSkill] = useState([]);
 
-    const handleQua = (event) => {
-        const {
-        target: { value },
-        } = event;
-        setSkill(
-        // On autofill we get a stringified value.
-        typeof value === 'string' ? value.split(',') : value,
-        );
-    };
+   
 
   return (
     <>
@@ -127,6 +199,8 @@ const Req = () => {
                 id="outlined-required"
                 label="Full Name"
                 type="name"
+                value={name}
+                onChange={handleName}
                 />
            
             <TextField
@@ -135,6 +209,8 @@ const Req = () => {
             id="outlined-required"
             label="Email Address"
                 type="email"
+                value={email}
+                onChange={handleEmail}
            
             />
        
@@ -144,7 +220,7 @@ const Req = () => {
                 <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                value={job}
+                value={occupation}
                 label="Occupation"
                 onChange={handleChange}
                 >
@@ -174,17 +250,18 @@ const Req = () => {
                     id="outlined-required"
                     label="Company"
                         type="name"
-                
+                        value={company}
+                        onChange={handleCompany}
                     />
 
        
-                    <FormControl sx={{ m: 2, width: 480}}>
+                    <FormControl sx={{ m: 2, width: 480}} required>
                         <InputLabel id="demo-multiple-chip-label">Qualifications and Skills</InputLabel>
                         <Select
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
-                        value={skill}
+                        value={qualifications}
                         onChange={handleQua}
                         input={<OutlinedInput id="select-multiple-chip" label="Qualifications and Skills" />}
                         renderValue={(selected) => (
@@ -196,33 +273,34 @@ const Req = () => {
                         )}
                         MenuProps={MenuProps}
                         >
-                        {quaname.map((name) => (
+                        {quaname.map((namee) => (
                             <MenuItem
-                            key={name}
-                            value={name}
-                            style={getStyles(name, skill, theme)}
+                            key={namee}
+                            value={namee}
+                            style={getStyles(namee, qualifications, theme)}
                             >
-                            {name}
+                            {namee}
                             </MenuItem>
                         ))}
                         </Select>
                     </FormControl>
-                    <TextField
+                    <TextField required
                     sx={{ m: 2, width: 500, marginBottom: '70px'}}
                         id="outlined-multiline-static"
                         label="Reasons to join"
+                        value={reason}
+                        onChange={handleReason}
                         multiline
                         rows={5}
-                        defaultValue="Justify your application..."
+                        
                         />
 
                    
-
+                    <ButtonB  type="submit" onClick={handleSubmit}>Submit Your Request</ButtonB>
 
             </form>
             
-            <ButtonB sx={{ m: 2, width: 480}} variant="contained">Submit Your Request</ButtonB>
-           
+          
         </FormWrapper>
         
 

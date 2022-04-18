@@ -8,8 +8,12 @@ import {Nav, NavbarContainer, NavLogo, NavMenu, MobileIcon, NavLinks, NavItem,
 import {FaBars} from 'react-icons/fa'
 import AdminTable from '../Data/AdminTable';
 import Amplify, { API } from 'aws-amplify';
-
-
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Grid from '@mui/material/Grid';
+import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
+import emailjs from '@emailjs/browser';
 //styling for table
 //import { makeStyles } from '@mui/styles/makeStyles';
 // import { Grid , Avatar} from '@mui/material';
@@ -302,16 +306,60 @@ const Admin = () => {
   //   {}
 
   // ]
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [pageSize, setPageSize]= useState(5)
+  const [name, setName]= useState('')
+  const [email, setEmail]= useState('')
+  const [occupation, setOccupation]= useState('')
+  const [company, setCompany]= useState('')
 
-  const [pageSize, setPageSize]= useState(2)
+  const parsingData = (dataa) =>{
+
+    dataa.map((datas) =>{
+        setName(datas.name)
+        setEmail(datas.email)
+        setOccupation(datas.occupation)
+        setCompany(datas.company)
+      }
+
+  )
+  console.log([name, email, occupation])
+
+
+}
+
+  const sendMail = (datas) =>{
+    
+    parsingData(datas)
+
+    emailjs.send('service_pqya14m', 'template_u262k1s', {name: name, occupation: occupation, company: company, to_email: email }, 'mD4Tm6VlbxJIbHSMY')
+    .then((result) => {
+        console.log(result.text);
+        console.log('Email Sent!')
+        setName('')
+        setEmail('')
+        setOccupation('')
+        setCompany('')
+
+    }, (error) => {
+        console.log(error.text);
+    });
+
+    
+
+
+  }
+
+ 
 
   const columns = [
+    { field: 'id', headerName: 'ID', width: 35 },
     { field: 'name', headerName: 'Requestor Name', width: 150 },
-    { field: 'email', headerName: 'Email', width: 250 },
+    { field: 'email', headerName: 'Email', width: 200 },
     { field: 'occupation', headerName: 'Occupation', width: 150},
-    { field: 'company', headerName: 'Company', width: 200},
-    { field: 'qualifications', headerName: 'Qualifications', width: 200 },
-    { field: 'reason', headerName: 'Reason to Join', width: 300 },
+    { field: 'company', headerName: 'Company', width: 110},
+    { field: 'qualifications', headerName: 'Qualifications', width: 280 },
+    { field: 'reason', headerName: 'Reason to Join', width: 350 },
 ];
   return (
     
@@ -338,26 +386,59 @@ const Admin = () => {
 
 
             
-              <div  style={{ margin: "auto", marginTop:"70px",
+              <div  style={{ margin: "auto", marginTop:"70px", marginBottom:"60px",
               height: 500, width: '100%' }}>
                 
               <DataGrid align={"center"}
               rows={data} columns={columns} 
             
-              checkboxSelection
-              disableSelectionOnClick
+             
+             
               loading={!data.length}
               pagination
               pageSize={pageSize}
               onPageSizeChange={(pageSize)=> setPageSize()}
-              rowsPerPageOptions={[2,5,10]}
+              rowsPerPageOptions={[5,9,15]}
+              disableMultipleSelection={true}
+              onSelectionModelChange={(ids) => {
+                const selectedIDs = new Set(ids);
+                const selectedRows = data.filter((rows) =>
+                  selectedIDs.has(rows.id),
+                );
+      
+                setSelectedRows(selectedRows);
+              }}
+
+
 
               />
-              </div>
+              </div >
 
-            
+              <Grid container justifyContent="center" alignItems="center" spacing={8}>
+
+                <Grid item >
+                <Button onClick={()=> {sendMail(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  endIcon={<ForwardToInboxIcon />}>
+                   Send Registration Link
+                 </Button>
+                </Grid>
+               
+
+              </Grid>
+              {/* {
+                parsingData(selectedRows)
+              } */}
+                 
+
+             
+                 
+              {/* <pre style={{ fontSize: 30 }}>
+                {JSON.stringify(selectedRows, null, 4)}
+              </pre> */}
+              {/* {console.log(selectedRows)} */}
+
+
               <div>
-              <h1>Main Page for Admin after logged In</h1>
+             
               {logoutdirect ? <Navigate to='/login'/> : null}
            </div>
 

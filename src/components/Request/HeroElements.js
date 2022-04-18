@@ -99,8 +99,9 @@ export const HeroP = styled.p`
 export const FormWrapper = styled.div`
     display: inline-block;
     flex-direction: column
-    align-items: flex-end;
-    height: 700px;
+    align-items: center;
+    
+    // height: 700px;
     width: 800px;
     z-index: 5;
     // max-width: 1200px;
@@ -110,6 +111,8 @@ export const FormWrapper = styled.div`
     background-color: white;
     box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
     border-radius: 12px;
+    min-height: 600px;
+    overflow: hidden;
     
     @media screen and (max-width: 768px) {
          
@@ -159,6 +162,7 @@ export const ArrowRight = styled(MdKeyboardArrowRight)`
 export const ButtonB = styled.button`
 
     border-radius: 50px;
+    margin-left:auto;
     background: ${({primary}) => (primary ? '#56e8e3' : '#010606')};
     white-space: nowrap;
     padding: ${({big}) => (big ? '14px 48px' : '12px 30px')};
