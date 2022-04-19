@@ -321,7 +321,12 @@ const Admin = () => {
   const [idd, setIdd]= useState('')
 
 
-  
+  const refreshdata = () =>{
+
+   // setData([]);
+   window.location.reload();
+  }
+
   const sendMail = () =>{
     
     //parsingData(datas)
@@ -361,7 +366,8 @@ const Admin = () => {
 
   console.log([name, email, occupation, idd])
 
-  sendMail();
+  setTimeout(sendMail(), 3000)
+  
 
   const handleDelete= async () =>{
     try{
@@ -376,7 +382,11 @@ const Admin = () => {
     }
   }
 
-  handleDelete()
+  setTimeout(handleDelete(), 3000)
+
+
+  
+
  
   
 
@@ -395,15 +405,17 @@ const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
+    refreshdata()
   };
 
 
     
 const handleConfirm = () =>{
 
-
-
-  parsingData(selectedRows)
+  setOpen(false);
+  setTimeout(parsingData(selectedRows), 5000)
+  setTimeout(refreshdata(), 5000)
+  
 }
 
 
@@ -479,7 +491,7 @@ const handleConfirm = () =>{
                 <Button onClick={()=> {parsingData(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  endIcon={<ForwardToInboxIcon />}>
                    Send Registration Link
                  </Button>
-                <Button  variant="contained" onClick={handleClickOpen}>Click</Button>
+                {/* <Button  variant="contained" onClick={handleClickOpen}>Click</Button> */}
                 </Grid>
                
 
@@ -502,7 +514,7 @@ const handleConfirm = () =>{
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose}>Disagree</Button>
-                  <Button onClick={handleClose}>Agree</Button>
+                  <Button onClick={handleConfirm}>Agree</Button>
                 </DialogActions>
               </Dialog>
               </div>

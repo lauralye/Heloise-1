@@ -6,12 +6,13 @@ import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-
+import { Redirect } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import Cleave from 'cleave.js/react';
 
 import img1 from '../../images/svg-4.svg'
 import img2 from '../../images/svg-5.svg'
+import { useNavigate } from 'react-router-dom';
 
 const SignUpIndex = () => {
 
@@ -29,7 +30,7 @@ const SignUpIndex = () => {
   //const userAttribute = [];
 
   
-  
+  const navigate = useNavigate();
 
   const onSubmit = event => {
     event.preventDefault();
@@ -42,6 +43,12 @@ const SignUpIndex = () => {
       UserPool.signUp(email,password,[{Name: 'name', Value: name},{Name: 'phone_number', Value: phone}, {Name: 'gender', Value: gender}], null, (err, data)=>{
         if(err) console.error(err);
         console.log(data);
+
+        
+
+        setTimeout(navigate('/login'), 3000)
+      
+        
 
 
     });
