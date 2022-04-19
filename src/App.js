@@ -32,7 +32,7 @@ function App() {
        
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/signup" element={<SignUp/>} /> {/*probably need special or hosting other server or have sub domain group name*/}
+        <Route path="/signup56c291873dd8224dbb3d91532cee13a2" element={<SignUp/>} /> {/*probably need special or hosting other server or have sub domain group name*/}
         <Route path="/login/*" element={<LogIn/>} />
         <Route path="/explore" element={<Explore/>} />
 
