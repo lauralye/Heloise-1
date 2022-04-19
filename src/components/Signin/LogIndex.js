@@ -463,7 +463,7 @@ const LogIn = () => {
                 </FormControl>
          </Grid>
          <Grid item xs={4} sx={{marginTop:2}} >
-         <Button variant="contained" size="large" theme={customTheme} 
+         <Button variant="contained" size="large" theme={customTheme} type="submit"
          onClick={onSubmit}
          >Sign In</Button>
          

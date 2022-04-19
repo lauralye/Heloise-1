@@ -14,6 +14,12 @@ import SendIcon from '@mui/icons-material/Send';
 import Grid from '@mui/material/Grid';
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import emailjs from '@emailjs/browser';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 //styling for table
 //import { makeStyles } from '@mui/styles/makeStyles';
 // import { Grid , Avatar} from '@mui/material';
@@ -312,43 +318,96 @@ const Admin = () => {
   const [email, setEmail]= useState('')
   const [occupation, setOccupation]= useState('')
   const [company, setCompany]= useState('')
-
-  const parsingData = (dataa) =>{
-
-    dataa.map((datas) =>{
-        setName(datas.name)
-        setEmail(datas.email)
-        setOccupation(datas.occupation)
-        setCompany(datas.company)
-      }
-
-  )
-  console.log([name, email, occupation])
+  const [idd, setIdd]= useState('')
 
 
-}
-
-  const sendMail = (datas) =>{
+  
+  const sendMail = () =>{
     
-    parsingData(datas)
+    //parsingData(datas)
 
     emailjs.send('service_pqya14m', 'template_u262k1s', {name: name, occupation: occupation, company: company, to_email: email }, 'mD4Tm6VlbxJIbHSMY')
     .then((result) => {
         console.log(result.text);
         console.log('Email Sent!')
-        setName('')
-        setEmail('')
-        setOccupation('')
-        setCompany('')
+       
 
     }, (error) => {
         console.log(error.text);
     });
 
-    
-
+    return (console.log("SUCCESS SENT MAIL!"))
 
   }
+
+
+
+  const parsingData = (dataa) =>{
+
+    handleClickOpen()
+    
+    dataa.map((datas) =>{
+        setName(datas.name)
+        setEmail(datas.email)
+        setOccupation(datas.occupation)
+        setCompany(datas.company)
+        setIdd(datas.id)
+      }
+    
+
+  )
+
+  //DO YOU really wanna send
+
+  console.log([name, email, occupation, idd])
+
+  sendMail();
+
+  const handleDelete= async () =>{
+    try{
+
+      await axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
+       { data: {id: idd} }
+      ).then(console.log("DELETED") )
+      
+
+    }catch(err){
+      console.log(`Error: ${err.message}`)
+    }
+  }
+
+  handleDelete()
+ 
+  
+
+}
+
+// dialog box
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+    
+const handleConfirm = () =>{
+
+
+
+  parsingData(selectedRows)
+}
+
+
+  
 
  
 
@@ -417,13 +476,36 @@ const Admin = () => {
               <Grid container justifyContent="center" alignItems="center" spacing={8}>
 
                 <Grid item >
-                <Button onClick={()=> {sendMail(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  endIcon={<ForwardToInboxIcon />}>
+                <Button onClick={()=> {parsingData(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  endIcon={<ForwardToInboxIcon />}>
                    Send Registration Link
                  </Button>
+                <Button  variant="contained" onClick={handleClickOpen}>Click</Button>
                 </Grid>
                
 
               </Grid>
+
+                <div>
+              <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-describedby="alert-dialog-slide-description"
+              >
+                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-slide-description">
+                    Let Google help apps determine location. This means sending anonymous
+                    location data to Google, even when no apps are running.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Disagree</Button>
+                  <Button onClick={handleClose}>Agree</Button>
+                </DialogActions>
+              </Dialog>
+              </div>
               {/* {
                 parsingData(selectedRows)
               } */}
