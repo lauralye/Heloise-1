@@ -1,7 +1,7 @@
 
 import React, {createContext, useEffect, useState} from 'react';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
-import { UserPool, AdminPool} from '../components/Signin/userpool';
+import { UserPool} from '../components/Signin/userpool';
 import {Navigate, Route, Routes} from 'react-router-dom'
 import {CognitoUserAttribute} from 'amazon-cognito-identity-js'
 
@@ -194,6 +194,9 @@ const toggle = () =>{
 
       </Container>
 
+      <div> {logoutdirect ? <Navigate to='/login'/> : null}</div>
+
+     
 
     </>
   
