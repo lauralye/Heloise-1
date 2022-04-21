@@ -1,5 +1,5 @@
-import {default as firstimg} from '../../images/svg-1.svg'
-import {default as secondimg} from '../../images/svg-2.svg'
+import {default as firstimg} from '../../images/svgg.svg'
+import {default as secondimg} from '../../images/svgg-2.svg'
 
 
 export const homeObjOne = {
