@@ -44,23 +44,20 @@ const SignUpIndex = () => {
         if(err) console.error(err);
         console.log(data);
 
-        
+
 
         setTimeout(navigate('/login'), 3000)
-      
-        
-
-
+  
     });
 
     }
 
-    // userAttributes.phone_number = phone;
-    // userAttributes.preferred_username = username;
 
     
   };
 
+    // userAttributes.phone_number = phone;
+    // userAttributes.preferred_username = username;
 
 
   return (

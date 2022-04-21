@@ -143,6 +143,43 @@ export const Formwrapper = styled.div`
 
 `
 
+export const Formwrapper2 = styled.div`
+
+
+
+            //display: flex;
+            position: absolute;
+            flex-direction: column
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            flex:1;
+             height: 450px;
+            
+
+            // max-width: 600px;
+           
+            padding: 26px 30px;
+          //  margin-top: 60px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+            border-radius: 12px;
+           // min-height: 300px;
+            overflow: hidden;
+            left: 50px;
+            top: 700px;
+
+            @media screen and (max-width: 768px) {
+                
+            
+               // position:absolute;
+                width: 400px;
+
+            }
+
+
+`
+
 
 
 export const ButtonSign2 = styled.button`

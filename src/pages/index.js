@@ -10,7 +10,7 @@ const Home = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-
+    //toggle for operning side bar
     const toggle = () =>{
         setIsOpen(!isOpen)
     }

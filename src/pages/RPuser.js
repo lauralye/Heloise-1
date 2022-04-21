@@ -10,7 +10,7 @@ import {Nav, NavbarContainer, NavLogo, NavMenu, MobileIcon, NavLinks, NavItem,
 import {FaBars} from 'react-icons/fa'
 import Avatar from '@mui/material/Avatar';
 
-import {Formwrapper, Line,ButtonSign2, ButtonSign,Pic,Title, Container, Banner } from './DesignPage/RPuserelement';
+import { Formwrapper,Line,ButtonSign2, ButtonSign,Pic,Title, Container, Banner, Formwrapper2 } from './DesignPage/RPuserelement';
 import stock from '../images/stock.png'
 
 import Input from '@mui/material/Input';
@@ -19,6 +19,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { lineHeight } from '@mui/system';
 
 
 const RPuser = () => {
@@ -128,7 +129,23 @@ const toggle = () =>{
           top: '290px'} }
       />
       <Line></Line>
-      <ButtonSign>Upload Picture</ButtonSign>
+
+    <form>
+    <input type="file" accept="image/*" />
+    <ButtonSign type="submit">Upload Picture</ButtonSign>
+    </form>
+      
+      
+
+
+      <Formwrapper2> 
+          <h5 >Displaying Name: </h5><br></br>
+          <h5>Contact Email: </h5>
+          <h5>Title: </h5>
+          <h5>Technical Specialism: </h5>
+          <h5>Bio: </h5>
+
+      </Formwrapper2>
 
       <Formwrapper>
         <form>

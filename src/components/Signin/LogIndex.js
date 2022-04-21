@@ -287,13 +287,24 @@ const LogIn = () => {
 	// 	window.location.reload(location_URL);
 	// }
 
+
+
   const { authenticate, authenticateAdmin} = useContext(AccountContext);
+
+
+  const refreshpage = () =>{
+
+    window.location.reload();
+  }
 
   const onSubmit = event => {
     event.preventDefault();
     
     authenticate(email, password).then(data=>{
         console.log('logged in!', data)
+
+
+        refreshpage()
     })
     .catch(err =>{
         console.error('Failed to Log In!', err)
@@ -312,6 +323,8 @@ const LogIn = () => {
     
     authenticateAdmin(emailAdmin, passwordAdmin).then(data=>{
         console.log('logged in!', data)
+
+        refreshpage()
     })
     .catch(err =>{
         console.error('Failed to Log In!', err)

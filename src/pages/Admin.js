@@ -313,6 +313,7 @@ const Admin = () => {
 
   // ]
   const [selectedRows, setSelectedRows] = useState([]);
+  const [empty, setEmpty] = useState([]);
   const [pageSize, setPageSize]= useState(5)
   const [name, setName]= useState('')
   const [email, setEmail]= useState('')
@@ -347,6 +348,46 @@ const Admin = () => {
 
 
 
+  const handleDelete= async (datoo) =>{
+    
+   
+    
+
+    if(selectedRows !== empty){
+
+      datoo.map((datas) =>{
+      
+        setIdd(datas.id)
+      }
+    
+  
+    )
+    console.log("the id is =" + idd)
+
+      try{
+
+     
+
+        await axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
+         { data: {id: idd} }
+        ).then(console.log("DELETED") )
+        
+  
+      }catch(err){
+        console.log(`Error: ${err.message}`)
+      }
+
+     
+    }else{
+      
+      console.log("EMPTY !")
+      return 
+    }
+    //setTimeout(refreshdata(), 5000)
+  }
+
+
+
   const parsingData = (dataa) =>{
 
     handleClickOpen()
@@ -368,27 +409,10 @@ const Admin = () => {
 
   setTimeout(sendMail(), 3000)
   
-
-  const handleDelete= async () =>{
-    try{
-
-      await axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
-       { data: {id: idd} }
-      ).then(console.log("DELETED") )
-      
-
-    }catch(err){
-      console.log(`Error: ${err.message}`)
-    }
-  }
+  handleDelete()
 
   setTimeout(handleDelete(), 3000)
 
-
-  
-
- 
-  
 
 }
 
@@ -405,7 +429,7 @@ const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
-    refreshdata()
+   refreshdata()
   };
 
 
@@ -489,8 +513,19 @@ const handleConfirm = () =>{
 
                 <Grid item >
                 <Button onClick={()=> {parsingData(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  endIcon={<ForwardToInboxIcon />}>
-                   Send Registration Link
+                   Approve Request 
                  </Button>
+
+                 
+                {/* <Button  variant="contained" onClick={handleClickOpen}>Click</Button> */}
+                </Grid>
+
+                <Grid item >
+                <Button onClick={()=> {handleDelete(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  >
+                   Decline Request
+                 </Button>
+
+                 
                 {/* <Button  variant="contained" onClick={handleClickOpen}>Click</Button> */}
                 </Grid>
                
@@ -505,16 +540,16 @@ const handleConfirm = () =>{
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
               >
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle>{"Confirm Approve?"}</DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-slide-description">
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
+                    Approving will trigger sending an invitation email to the selected requestors: 
+                    Name: {name}  |  Email: {email}.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose}>Disagree</Button>
-                  <Button onClick={handleConfirm}>Agree</Button>
+                  <Button onClick={handleClose}>Cancel</Button>
+                  <Button onClick={handleConfirm}>Confirm</Button>
                 </DialogActions>
               </Dialog>
               </div>
