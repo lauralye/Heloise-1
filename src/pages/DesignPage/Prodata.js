@@ -59,6 +59,64 @@ export const data = [
 	},
 ];
 
+export const Ap = [
+	{
+		title: 'Easy Plug In | Netgear Powerline 500 Access Point',
+		description:
+			'A powerline adapter that’s also a wireless access point helping extend your network by using the power lines in your home to carry the network further before turning it into a wireless signal.',
+		image: 'https://cdn.mos.cms.futurecdn.net/NpTCKpwDffqmJiMA8NiDKS-970-80.jpg.webp',
+	},
+	{
+		title: 'Offers WiFI 6 | Zyxel True WiFi6 Wireless Access Point',
+		description: 'The device does cost a bit more than usual, but it’s worth investing in it. In exchange, you’ll get powerful and advanced features to make your life easy.',
+		image: 'https://www.electronicshub.org/wp-content/uploads/2021/08/Zyxel-True-WiFi6-Wireless-Access-Point.jpg',
+	},
+	{
+		title: 'Best Overall Value | Netgear Wireless AP',
+		description: 'This dual-band Wireless Access Point comes with 300mbps of speed in 2.4Ghz and provides 867bps of data transmission speed in 5.0Ghz.',
+		image: 'https://www.electronicshub.org/wp-content/uploads/2021/08/NETGEAR-Wireless-Access-Point.jpg',
+	},
+	{
+		title: 'For Outdoor | Paharos CPE510',
+		description: 'Inexpensive router that can easily handle streaming 4K in Netflix, keeping in touch with friends and colleagues on FaceTime and Zoom, and even light online gaming.',
+		image: 'https://static.tp-link.com/outdoor510210-01_1492403404045z.jpg',
+	},
+	{
+		title: 'Big Upgrade For Home | AC1200 Whole Home Mesh',
+		description: 'The simplest way to guarantee a strong Wi-Fi signal in every corner of your home up to 5,500 square feet (3-pack). Wireless connections and optional Ethernet backhaul work together to link Deco units, providing even faster network speeds and truly seamless coverage.',
+		image: 'https://static.tp-link.com/DecoM401normal_1544679306185R.jpg',
+	},
+    
+];
+
+
+
+export const officerouter = [
+	{
+		title: 'Best Mesh Coverage | Netgear Orbi WiFi 6',
+		description:
+			'If your small business is ready to jump on the Wi-Fi 6 bandwagon, this router covers massive space which makes it ideal for medium size businesses, or any business that has a large office full of internet-connected devices',
+		image: 'https://cdn.mos.cms.futurecdn.net/ee2nrX6BbniPnU4ELhVfKN-970-80.jpg.webp',
+	},
+	{
+		title: 'Powerful and Stylish | Netgear Nighthawk X10',
+		description: 'Technically speaking, the Nighthawk X10 is a consumer router but like the Asus model above, it offers features that you will usually find on business routers.',
+		image: 'https://cdn.mos.cms.futurecdn.net/99LfAEMdebY6jToc7hnyKm-970-80.jpg.webp',
+	},
+	{
+		title: 'For Small Businesses | Synology RT2600AC',
+		description: 'This small business router offers a reliable, fast, and convenient experience for small business users and individual users alike, especially when you consider just how many network management settings it includes.',
+		image: 'https://m.media-amazon.com/images/I/419niIRlrqL.jpg',
+	},
+	{
+		title: 'Best For Wired Connectivity | Cisco RV340 Router',
+		description: 'If you’re looking for a wired internet router for devices like network printers, and desktop computers,ith advanced functionality like dual-WAN support, VPN protocol configuration, and an extra-durable build quality.',
+		image: 'https://media.router-switch.com/media/catalog/product/cache/d0761e75648390d9fa021f6da3b42052/c/i/cisco-rv340.jpg',
+	},
+	
+    
+];
+
 export const sliderSettings = {
 	arrows: false,
 	slidesToShow: 3,

@@ -13,9 +13,9 @@ import svg1 from '../images/svg-1.svg'
 import { images } from './DesignPage/Prodata';
 
 
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { MdArrowBackIos, MdArrowForwardIos} from 'react-icons/md';
 import { IconContext } from 'react-icons';
-import { data, sliderSettings } from '../pages/DesignPage/Prodata';
+import { data, sliderSettings, Ap, officerouter} from '../pages/DesignPage/Prodata';
 // import { Row, Heading, Section, TextWrapper } from '../../globalStyles';
 import {
   Row,
@@ -26,6 +26,55 @@ import {
 	CardButton,
 } from '../pages/DesignPage/Carousel';
 
+
+export const TextWrapper = styled.div`
+    margin auto    
+    align-items: center;
+   // max-width: 540px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+
+`
+
+export const TopLine =styled.p`
+
+    color: #01bf71;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+
+`
+
+export const Heading = styled.h1`
+
+
+    margin-bottom: 24px;
+    font-size: 43px;
+    line-height: 1.1;
+    font-weight: 600;
+    color: ${({lightText}) => (lightText ? '#f7f8fa' : '#010606')};
+
+    @media screen and(max-width: 480px){
+        font-size: 32px;
+    }
+`
+
+export const Subtitle= styled.p`
+
+    max-width: 440px;
+    margin-bottom: 35px;
+    font-size: 18px;
+    line-heightL 24px;
+    color: ${({darkText}) => (darkText ? '#010606' : '#fff')};
+
+
+`
+
+
 export const ExploreCon = styled.div`
 
     background: #0c0c0c;
@@ -34,7 +83,7 @@ export const ExploreCon = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 30px;
-    height: 800px;
+    height: 690px;
     position: relative;
     z-index: 1;
 
@@ -54,13 +103,28 @@ export const ExploreCon = styled.div`
 `
 export const HomeDiv = styled.div`
 
-      display:flex;
+      //display:flex;
       vertical-align: text-top;
       flex-direction: column
       justify-content: center;
       align-items: center;
       padding: 0 30px;
-      height: 750px;
+      height: auto;
+
+
+
+`
+export const OfficeDiv = styled.div`
+
+
+        background: #080808;
+      //display:flex;
+    
+      flex-direction: column
+      justify-content: center;
+      align-items: center;
+     padding: 0 30px;
+      min-height: 500px;
 
 
 
@@ -177,25 +241,29 @@ const Explore = () => {
             </HeroContent> */}
         </ExploreCon>
 
-              <HeroContent>
+              {/* <HeroContent>
                   <HeroH2>Planning For Home WiFi. These Are What You Need</HeroH2>
                   <HeroH2> Wireless Router</HeroH2>
-                  <ButtonContainer>
-                      <IconContext.Provider value={{ size: '3rem', color: '#1d609c' }}>
-                        <FaArrowCircleLeft onClick={sliderRef?.slickPrev} />
-                        <FaArrowCircleRight onClick={sliderRef?.slickNext} />
-                      </IconContext.Provider>
-                    </ButtonContainer>
-                </HeroContent>
+                 
+                </HeroContent> */}
+
+               
 
               <HomeDiv>
-                
+              <TextWrapper>
+                  
+                  <TopLine>Planning For Home WiFi. These Might Be What You Need.</TopLine>
+                  <Heading lightText={false}>Wireless Router</Heading>
+                  <ButtonContainer>
+                      <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
+                        <MdArrowBackIos onClick={sliderRef?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef?.slickNext} />
+                      </IconContext.Provider>
+                    </ButtonContainer>
+                  {/* <Subtitle darkText={true}>test</Subtitle> */}
+              </TextWrapper>
 
 
-                
-                    
-                    
-              
                     
                 <ReviewSlider {...sliderSettings} ref={setSliderRef}>
                   {data.map((el, index) => (
@@ -225,22 +293,107 @@ const Explore = () => {
                   ))}
                 </ReviewSlider>
 
-               
+
+                <TextWrapper>
+                  
+                  <TopLine>Deadzones? Need Better Coverage?</TopLine>
+                  <Heading lightText={false}>Access Point & Wireless Extender</Heading>
+                  <ButtonContainer>
+                      <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
+                        <MdArrowBackIos onClick={sliderRef?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef?.slickNext} />
+                      </IconContext.Provider>
+                    </ButtonContainer>
+                  {/* <Subtitle darkText={true}>test</Subtitle> */}
+              </TextWrapper>
 
 
-
-
-
-
+                <ReviewSlider {...sliderSettings} ref={setSliderRef}>
+                  {Ap.map((el, index) => (
+                    <Card sx={{ maxWidth: 350, maxHeight:600}}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="300vh"
+                        
+                        image={el.image}
+                        alt="routerimg"
+                      />
+                      <CardContent sx={{padding: 3, textAlign: "center"}}>
+                        <Typography gutterBottom variant="h5" component="div" >
+                        {el.title}
+                        </Typography>
+                        </CardContent>
+                        <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          {el.description}
+                        </Typography>
+                      
+                      </CardContent>
+                    </CardActionArea>
+                    
+                  </Card>
+                  ))}
+                </ReviewSlider>
 
 
               </HomeDiv>
+
+
+
+              <OfficeDiv>
+              <TextWrapper>
+                  
+                  <TopLine>Planning For Office WiFi. These Might Be What You Need.</TopLine>
+                  <Heading lightText={true}>Wireless Router</Heading>
+                  <ButtonContainer>
+                      <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
+                        <MdArrowBackIos onClick={sliderRef?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef?.slickNext} />
+                      </IconContext.Provider>
+                    </ButtonContainer>
+                  {/* <Subtitle darkText={true}>test</Subtitle> */}
+              </TextWrapper>
+
+
+
+              <ReviewSlider {...sliderSettings} ref={setSliderRef}>
+                  {officerouter.map((el, index) => (
+                    <Card sx={{ maxWidth: 350, maxHeight:600}}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="300vh"
+                        image={el.image}
+                        alt="routerimg"
+                      />
+                      <CardContent sx={{padding: 3, textAlign: "center"}}>
+                        <Typography gutterBottom variant="h5" component="div" >
+                        {el.title}
+                        </Typography>
+                        </CardContent>
+                        <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                          {el.description}
+                        </Typography>
+                      
+                      </CardContent>
+                    </CardActionArea>
+                    
+                  </Card>
+                  ))}
+                </ReviewSlider>
+              
+
+
+
+              </OfficeDiv>
             
 
 
 
 
-        <Grid container>
+        {/* <Grid container>
      
 
     <Card sx={{ marginLeft:10,marginTop: 10,maxWidth: 400, maxHeight:600}}>
@@ -269,7 +422,7 @@ const Explore = () => {
       </CardActions>
     </Card>
     </Grid>
-    
+     */}
     </>
 
   )

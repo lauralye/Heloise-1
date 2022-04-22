@@ -42,6 +42,9 @@ export const ImageWrapper = styled.div`
 `;
 
 export const ButtonContainer = styled(Row)`
+		float: right;
+		display:block;
+	margin-bottom:auto;
 	& svg {
 		margin: 0 1rem;
 		cursor: pointer;
