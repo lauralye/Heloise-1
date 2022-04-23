@@ -25,7 +25,7 @@ export const images = {
 
 
 
-export const data = [
+export const data1 = [
 	{
 		title: 'Best For Home | TP-Link AC1750',
 		description:

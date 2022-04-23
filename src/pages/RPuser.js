@@ -20,6 +20,8 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { lineHeight } from '@mui/system';
+import { AccountContext } from '../components/Signin/Acconts';
+import axios from 'axios';
 // import { emailvar } from '../components/Signin/LogIndex';
 
 // export class mail{
@@ -39,7 +41,7 @@ import { lineHeight } from '@mui/system';
 
 const RPuser = () => {
 
-  //const { email} = useContext(LoginContext);
+  
 
 
     // const { getSession, logout} = useContext(AccountContext);
@@ -112,11 +114,32 @@ const toggle = () =>{
   setIsOpen(!isOpen)
 }
 
-const [email1, setEmail1] = useState('')
+const [email, setEmail] = useState('de.laura.lye@gmail.com')
 const [title, setTitle] = useState('')
 const [specialism, setSpecialism] = useState('')
 const [bio, setBio] = useState('')
 const [preff_email, setPreff] = useState('')
+const [name, setName] = useState('')
+
+
+// const handleEmail =(event) =>{
+//   setEmail(event.target.value)
+// }
+
+const handleTitle =(event) =>{
+  setTitle(event.target.value)
+}
+
+const handleSpecial =(event) =>{
+  setSpecialism(event.target.value)
+}
+
+const handleBio =(event) =>{
+  setBio(event.target.value)
+}
+const handlePreff =(event) =>{
+  setPreff(event.target.value)
+}
 
 const getEmail = () =>{
 
@@ -125,14 +148,36 @@ const getEmail = () =>{
   // console.log(user.getUsername)
   // setEmail1(email)
   // console.log(email)
+
+ 
 }
 
-// const onSubmit = () ={
+const handleSubmit = async () =>{
+
+  try{
+
+    const response = await axios.put('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/profiles', 
+    JSON.stringify({
+      name:name,
+      email:email,
+      title: title,
+      specialism: specialism,
+      bio: bio,
+      preff_email: preff_email
+
+    }))
+
+    console.log(response.data)
+
+   
+
+  }catch (err){
+
+    console.log(`Error: ${err.message}`)
+  }
 
 
-
-
-// }
+}
 
 
   return (
@@ -161,7 +206,7 @@ const getEmail = () =>{
       </NavbarContainer>
       </Nav>
 
-      <button onClick={getEmail}>CLICK</button>
+      
 
       <Banner>
         <Title>Profile</Title>
@@ -178,23 +223,23 @@ const getEmail = () =>{
 
     <form>
     <input type="file" accept="image/*" />
-    <ButtonSign type="submit">Upload Picture</ButtonSign>
+    <ButtonSign type="submit"></ButtonSign>
     </form>
       
       
 
 
-      <Formwrapper2> 
+      {/* <Formwrapper2> 
           <h5 >Displaying Name: </h5><br></br>
           <h5>Contact Email: </h5>
           <h5>Title: </h5>
           <h5>Technical Specialism: </h5>
           <h5>Bio: </h5>
 
-      </Formwrapper2>
+      </Formwrapper2> */}
 
       <Formwrapper>
-        <form >
+        <form  >
 
         <TextField sx={{ m: 2, width: '30ch' }}
         id="input-with-icon-textfield"
@@ -207,6 +252,9 @@ const getEmail = () =>{
           ),
         }}
         variant="standard"
+        value={name}
+        onChange={event=>setName(event.target.value)}
+
       />
 
           <TextField
@@ -215,8 +263,8 @@ const getEmail = () =>{
             id="outlined-required-2"
             label="Preferred Contact Email"
                 type="email"
-                // value={email}
-                // onChange={event=>setEmail(event.target.value)}
+                value={preff_email}
+                onChange={event=>setPreff(event.target.value)}
            
             />
 
@@ -226,8 +274,8 @@ const getEmail = () =>{
                 id="outlined-required-1"
                 label="Display Title"
                 type="name"
-                // value={name}
-                // onChange={event=>setName(event.target.value)}
+                value={title}
+                onChange={event=>setTitle(event.target.value)}
                 />
 
                 <TextField
@@ -236,8 +284,8 @@ const getEmail = () =>{
                 id="outlined-required-1"
                 label="Technical Specialism"
                 type="name"
-                // value={name}
-                // onChange={event=>setName(event.target.value)}
+               value={specialism}
+                onChange={event=>setSpecialism(event.target.value)}
                 />
 
 
@@ -246,11 +294,14 @@ const getEmail = () =>{
           label="Bio"
           multiline
           rows={6}
-          defaultValue="Introduce a bit about yourself..."
+         value={bio}
+         onChange={event=>setBio(event.target.value)}
           />
-        </form>
 
-        <ButtonSign2 type='submit'>Post Profile</ButtonSign2>
+
+        </form>
+        <ButtonSign2 onClick={handleSubmit}>Post Profile</ButtonSign2>
+       
 
 
       </Formwrapper>

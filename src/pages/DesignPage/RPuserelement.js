@@ -68,7 +68,8 @@ export const ButtonSign = styled.button`
     left: 100px;
     top: 195px;
     // margin:auto;
-    background: ${({primary}) => (primary ? '#56e8e3' : '#010606')};
+    background: white;
+    // background: ${({primary}) => (primary ? '#56e8e3' : '#010606')};
     white-space: nowrap;
     padding: ${({big}) => (big ? '14px 48px' : '12px 80px')};
     color: ${({dark}) => (dark ? '#010606' : '#fff')};

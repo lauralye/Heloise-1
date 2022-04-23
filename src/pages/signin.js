@@ -27,15 +27,13 @@ const LogIn = () => {
         <Status/>
         <HeroSectionLogin>
           
-         <LogIndex>
-            {temp ? <RPuser/>  : null}
-         </LogIndex>
+         <LogIndex></LogIndex>
+      
         </HeroSectionLogin>
 
 {/* //keeps on looping the status probably */}
         
-
-
+      
         
        
         {/* <Route path="/rpuser" element={<Status />}>

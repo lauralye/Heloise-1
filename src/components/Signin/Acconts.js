@@ -1,4 +1,4 @@
-import React, {createContext} from 'react';
+import React, {createContext, useState} from 'react';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { UserPool, AdminPool} from './userpool';
 
@@ -10,6 +10,8 @@ const AccountContext = createContext();
 
 const Account = props => {
 
+
+    const [goten, setGoten] = useState('')
 
     const getSession = async () => await new Promise((resolve, reject) =>{
 
@@ -44,6 +46,7 @@ const Account = props => {
         user.authenticateUser(authDetails, {
             onSuccess: data =>{
                 console.log('onSuccess:', data);
+               
                 resolve(data);
             },
             onFailure: err =>{
@@ -127,7 +130,7 @@ const Account = props => {
 
         <AccountContext.Provider value={{
 
-            authenticate, getSession, logout, authenticateAdmin, getSessionAdmin, logoutAdmin
+           authenticate, getSession, logout, authenticateAdmin, getSessionAdmin, logoutAdmin
         }}>
             {props.children}
         </AccountContext.Provider>

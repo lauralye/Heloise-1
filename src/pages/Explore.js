@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Navbar from '../components/Navbar/index'
 import Sidebar from '../components/Sidebar/index'
 import HeroSection from '../components/HeroSection';
@@ -15,7 +15,7 @@ import { images } from './DesignPage/Prodata';
 
 import { MdArrowBackIos, MdArrowForwardIos} from 'react-icons/md';
 import { IconContext } from 'react-icons';
-import { data, sliderSettings, Ap, officerouter} from '../pages/DesignPage/Prodata';
+import { data1, sliderSettings, Ap, officerouter} from '../pages/DesignPage/Prodata';
 // import { Row, Heading, Section, TextWrapper } from '../../globalStyles';
 import {
   Row,
@@ -25,7 +25,7 @@ import {
 	CarouselImage,
 	CardButton,
 } from '../pages/DesignPage/Carousel';
-
+import axios from 'axios';
 
 export const TextWrapper = styled.div`
     margin auto    
@@ -173,7 +173,44 @@ export const HeroH2 = styled.h1`
   `
 const Explore = () => {
 
+  
+  const [data, setData] = useState([])
+
+    
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try{
+        const response = await axios.get("https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/profiles")
+        setData(response.data)
+        console.log(response.data)
+
+      }catch (err){
+        if(err.response){
+          //not in 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+
+        }else{
+          console.log(`Error: ${err.message}`)
+        }
+          
+      }
+    }
+    fetchData();
+
+  }, []
+
+  )
+
+
+
+
+
   const [sliderRef, setSliderRef] = useState(null);
+  const [sliderRef1, setSliderRef1] = useState(null);
+  const [sliderRef2, setSliderRef2] = useState(null);
+  const [sliderRef3, setSliderRef3] = useState(null);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -266,7 +303,7 @@ const Explore = () => {
 
                     
                 <ReviewSlider {...sliderSettings} ref={setSliderRef}>
-                  {data.map((el, index) => (
+                  {data1.map((el, index) => (
                     <Card sx={{ maxWidth: 350, maxHeight:600}}>
                     <CardActionArea>
                       <CardMedia
@@ -300,15 +337,15 @@ const Explore = () => {
                   <Heading lightText={false}>Access Point & Wireless Extender</Heading>
                   <ButtonContainer>
                       <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
-                        <MdArrowBackIos onClick={sliderRef?.slickPrev} />
-                        <MdArrowForwardIos onClick={sliderRef?.slickNext} />
+                        <MdArrowBackIos onClick={sliderRef1?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef1?.slickNext} />
                       </IconContext.Provider>
                     </ButtonContainer>
                   {/* <Subtitle darkText={true}>test</Subtitle> */}
               </TextWrapper>
 
 
-                <ReviewSlider {...sliderSettings} ref={setSliderRef}>
+                <ReviewSlider {...sliderSettings} ref={setSliderRef1}>
                   {Ap.map((el, index) => (
                     <Card sx={{ maxWidth: 350, maxHeight:600}}>
                     <CardActionArea>
@@ -348,8 +385,8 @@ const Explore = () => {
                   <Heading lightText={true}>Wireless Router</Heading>
                   <ButtonContainer>
                       <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
-                        <MdArrowBackIos onClick={sliderRef?.slickPrev} />
-                        <MdArrowForwardIos onClick={sliderRef?.slickNext} />
+                        <MdArrowBackIos onClick={sliderRef2?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef2?.slickNext} />
                       </IconContext.Provider>
                     </ButtonContainer>
                   {/* <Subtitle darkText={true}>test</Subtitle> */}
@@ -357,7 +394,7 @@ const Explore = () => {
 
 
 
-              <ReviewSlider {...sliderSettings} ref={setSliderRef}>
+              <ReviewSlider {...sliderSettings} ref={setSliderRef2}>
                   {officerouter.map((el, index) => (
                     <Card sx={{ maxWidth: 350, maxHeight:600}}>
                     <CardActionArea>
@@ -384,6 +421,58 @@ const Explore = () => {
                   ))}
                 </ReviewSlider>
               
+
+                <TextWrapper>
+                  
+                  <TopLine>In need of a specialist? Contact one of our experts now.</TopLine>
+                  <Heading lightText={true}>Network Specialist</Heading>
+                  <ButtonContainer>
+                      <IconContext.Provider value={{ marginLeft: "auto",size: '2rem', color: '#56e8e3' }}>
+                        <MdArrowBackIos onClick={sliderRef3?.slickPrev} />
+                        <MdArrowForwardIos onClick={sliderRef3?.slickNext} />
+                      </IconContext.Provider>
+                    </ButtonContainer>
+                  {/* <Subtitle darkText={true}>test</Subtitle> */}
+              </TextWrapper>
+
+
+
+              <ReviewSlider {...sliderSettings} ref={setSliderRef3}>
+                  {data.map((el, index) => (
+                    <Card sx={{ maxWidth: 400, minHeight:300}}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        // height="200vh"
+                        // width="100vh"
+                        image="https://www.kindpng.com/picc/m/207-2078533_person-with-headset-cartoon-png-transparent-png.png"
+                        alt="routerimg"
+                      />
+                      <CardContent sx={{padding: 0, textAlign: "center"}}>
+                        <Typography gutterBottom variant="h5" component="div" >
+                         {el.title}
+                        </Typography>
+                        </CardContent>
+                        <CardContent>
+                        <Typography gutterBottom variant="h6" component="div" >
+                         My name is {el.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          Specialism: {el.specialism}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          Contact Email: {el.preff_email}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                         About me / Bio: {el.bio}
+                        </Typography>
+                      
+                      </CardContent>
+                    </CardActionArea>
+                    
+                  </Card>
+                  ))}
+                </ReviewSlider>
 
 
 
