@@ -438,7 +438,7 @@ const [opensnack, setOpenSnack] = React.useState(false);
 
             
               <div  style={{ margin: "auto", marginTop:"70px", marginBottom:"60px",
-              height: 500, width: '100%' }}>
+              height: "600px", width: '100%' }}>
                 
               <DataGrid align={"center"}
               rows={data} columns={columns} 
