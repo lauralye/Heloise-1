@@ -1,5 +1,5 @@
 
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useEffect, useState, useContext} from 'react';
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import { UserPool} from '../components/Signin/userpool';
 import {Navigate, Route, Routes} from 'react-router-dom'
@@ -20,9 +20,27 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { lineHeight } from '@mui/system';
+// import { emailvar } from '../components/Signin/LogIndex';
 
+// export class mail{
+
+//   constructor(mail){
+//     this.setMail = mail;
+//   }
+
+//   getMail(){
+//     return this.mail;
+//   }
+
+//   setMail(newmail){
+//     this.mail = newmail;
+//   }
+// }
 
 const RPuser = () => {
+
+  //const { email} = useContext(LoginContext);
+
 
     // const { getSession, logout} = useContext(AccountContext);
 
@@ -46,18 +64,22 @@ const RPuser = () => {
 
 
 // });
+
+
 const [logoutdirect, setLogoutdirect] =useState(false);
 
   const [username, setUsername] = useState('')
 
 
-
+ 
 
   const getSession = async () => await new Promise((resolve, reject) =>{
 
     const user = UserPool.getCurrentUser();
     if(user){
         user.getSession((err, session)=>{
+
+
 
             if(err){
                 reject();
@@ -90,6 +112,28 @@ const toggle = () =>{
   setIsOpen(!isOpen)
 }
 
+const [email1, setEmail1] = useState('')
+const [title, setTitle] = useState('')
+const [specialism, setSpecialism] = useState('')
+const [bio, setBio] = useState('')
+const [preff_email, setPreff] = useState('')
+
+const getEmail = () =>{
+
+  // const user = UserPool.getCurrentUser();
+  // user.getUsername()
+  // console.log(user.getUsername)
+  // setEmail1(email)
+  // console.log(email)
+}
+
+// const onSubmit = () ={
+
+
+
+
+// }
+
 
   return (
     
@@ -116,6 +160,8 @@ const toggle = () =>{
           
       </NavbarContainer>
       </Nav>
+
+      <button onClick={getEmail}>CLICK</button>
 
       <Banner>
         <Title>Profile</Title>
@@ -148,7 +194,7 @@ const toggle = () =>{
       </Formwrapper2>
 
       <Formwrapper>
-        <form>
+        <form >
 
         <TextField sx={{ m: 2, width: '30ch' }}
         id="input-with-icon-textfield"
@@ -204,7 +250,7 @@ const toggle = () =>{
           />
         </form>
 
-        <ButtonSign2>Post Profile</ButtonSign2>
+        <ButtonSign2 type='submit'>Post Profile</ButtonSign2>
 
 
       </Formwrapper>

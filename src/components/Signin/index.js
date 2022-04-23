@@ -13,6 +13,8 @@ import Cleave from 'cleave.js/react';
 import img1 from '../../images/svg-4.svg'
 import img2 from '../../images/svg-5.svg'
 import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const SignUpIndex = () => {
 
@@ -44,7 +46,7 @@ const SignUpIndex = () => {
         if(err) console.error(err);
         console.log(data);
 
-
+        handleClick()
 
         setTimeout(navigate('/login'), 3000)
   
@@ -59,6 +61,23 @@ const SignUpIndex = () => {
     // userAttributes.phone_number = phone;
     // userAttributes.preferred_username = username;
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+     setOpen(true);
+   };
+
+    const handleClose = (event, reason) => {
+     if (reason === 'clickaway') {
+       return;
+     }
+ 
+     setOpen(false);
+   };
+
+   const Alert = React.forwardRef(function Alert(props, ref) {
+     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
 
   return (
 
@@ -118,7 +137,7 @@ const SignUpIndex = () => {
             sx={{ m: 2, width: '30ch' }}
             required
             id="outlined-required-4"
-            label="Password"
+            label="Retype Password"
                 type="password"
                 value={confirmpass}
                 onChange={event=>setConfirm(event.target.value)}
@@ -139,7 +158,7 @@ const SignUpIndex = () => {
                
                 <MenuItem value={'Female'}>Female</MenuItem>
                 <MenuItem value={'Male'}>Male</MenuItem>
-                <MenuItem value={'Others'}>Male</MenuItem>
+                <MenuItem value={'Others'}>Others</MenuItem>
             
                 <MenuItem value="">
                     <em>Unspecified</em>
@@ -171,6 +190,11 @@ const SignUpIndex = () => {
         </form>
 
         </Formwrapper>
+        <Snackbar open={open} autoHideDuration={4500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Your request is sent !
+        </Alert>
+      </Snackbar>   
         
       </Backgrounddiv>
       <Backgrounddiv>

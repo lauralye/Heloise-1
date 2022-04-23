@@ -12,7 +12,7 @@ import HeroSectionLogin from '../components/Signin/HeroLogin'
 const LogIn = () => {
 
   const [isOpen, setIsOpen] = useState(false);
-
+  const [temp, setTemp] =useState(false)
 
   const toggle = () =>{
       setIsOpen(!isOpen)
@@ -27,7 +27,9 @@ const LogIn = () => {
         <Status/>
         <HeroSectionLogin>
           
-         <LogIndex/>
+         <LogIndex>
+            {temp ? <RPuser/>  : null}
+         </LogIndex>
         </HeroSectionLogin>
 
 {/* //keeps on looping the status probably */}

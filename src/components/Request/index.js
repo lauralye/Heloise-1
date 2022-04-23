@@ -24,7 +24,8 @@ import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Req = () => {
 
@@ -81,6 +82,17 @@ const handleReason =(event) =>{
 }
 
 
+const resetField= () =>{
+
+  setName("");
+  setEmail("");
+  setOccupation("");
+  setCompany("");
+  setQua([])
+  setReason("");
+
+}
+
 const handleSubmit = async (e)=>{
   e.preventDefault()
   //setPostdata({name, email, occupation, company, qualifications, reason})
@@ -111,6 +123,10 @@ const handleSubmit = async (e)=>{
 
     console.log(response.data)
 
+    handleClick()
+
+    resetField();
+
   }catch (err){
 
     console.log(`Error: ${err.message}`)
@@ -123,20 +139,10 @@ const handleSubmit = async (e)=>{
 ////////////////////
 
 
-
-
-
-
     const onHover = () =>{
         setHover(!hover)
     }
 
-
-      
-    
-  
-
-   
 
 
       //chip select for qualifications
@@ -172,7 +178,25 @@ const handleSubmit = async (e)=>{
       const theme = useTheme();
      const [skill, setSkill] = useState([]);
 
-   
+
+
+     const [open, setOpen] = React.useState(false);
+
+     const handleClick = () => {
+      setOpen(true);
+    };
+
+     const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+
+    const Alert = React.forwardRef(function Alert(props, ref) {
+      return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
   return (
     <>
@@ -191,7 +215,7 @@ const handleSubmit = async (e)=>{
             
            
            
-            <form>
+            <form onSubmit={handleSubmit}>
             
             <TextField
              sx={{ m: 2, width: '35ch' }}
@@ -296,14 +320,18 @@ const handleSubmit = async (e)=>{
                         />
 
                    
-                    <ButtonB  type="submit" onClick={handleSubmit}>Submit Your Request</ButtonB>
+                    <ButtonB  type="submit" >Submit Your Request</ButtonB>
 
             </form>
             
           
         </FormWrapper>
         
-
+        <Snackbar open={open} autoHideDuration={4500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Your request is sent !
+        </Alert>
+      </Snackbar>   
       
     </HeroContainer>
     

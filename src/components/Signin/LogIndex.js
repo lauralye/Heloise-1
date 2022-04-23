@@ -1,5 +1,5 @@
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, createContext} from 'react'
 import { AccountContext } from './Acconts';
 import { UserPool, AdminPool } from './userpool';
 import styled from 'styled-components'
@@ -30,6 +30,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import RPuser from '../../pages/RPuser';
+import { mail } from '../../pages/RPuser';
 //login form component
 // export const ModalForm= (props) =>{
   
@@ -262,11 +265,11 @@ const Divforbut = styled.div`
 
 `
 
+const LoginContext = createContext();
 
 
 
-
-const LogIn = () => {
+const LogIn = (props) => {
 
   // const userAttributes = {
   //   phone_number: '',
@@ -300,9 +303,11 @@ const LogIn = () => {
   const onSubmit = event => {
     event.preventDefault();
     
+    //mail.setMail(email)
+    //console.log(mail.getMail)
     authenticate(email, password).then(data=>{
         console.log('logged in!', data)
-
+        
 
         refreshpage()
     })
@@ -402,7 +407,7 @@ const LogIn = () => {
   });
 
 
-
+  const [temp, setTemp] = useState(false)
  
   
   const theme = createTheme();
@@ -573,14 +578,15 @@ const LogIn = () => {
     </Box>
    
   </Modal> : null}
-
+      
     </Divforbut>
+ 
   </>
   )
 }
 
 
-export default LogIn;
+export default LogIn
 
 
 // <Container>

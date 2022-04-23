@@ -20,33 +20,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-//styling for table
-//import { makeStyles } from '@mui/styles/makeStyles';
-// import { Grid , Avatar} from '@mui/material';
-// import PropTypes from 'prop-types';
-// import Box from '@mui/material/Box';
-// import Collapse from '@mui/material/Collapse';
-// import IconButton from '@mui/material/IconButton';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Typography from '@mui/material/Typography';
-// import Paper from '@mui/material/Paper';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-// import { cyan } from '@mui/material/colors';
-// import { createTheme } from '@mui/material';
-// import { ThemeProvider } from 'styled-components';
-// import Button from '@mui/material/Button';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import SendIcon from '@mui/icons-material/Send';
-// import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
-// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { confirmAlert } from 'react-confirm-alert';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { DataGrid, GridRowsProp, GridColDef} from '@mui/x-data-grid';
-
+import { SnackbarProvider, useSnackbar } from 'notistack';
 /////////////////////////////////////////////////////
 Amplify.configure({
     // OPTIONAL - if your API requires authentication 
@@ -167,151 +145,8 @@ const Admin = () => {
     };
 
 
-    
-// function Row(props) {
-//   const { row } = props;
-//   const [openC, setOpen] = useState(false);
-
-//   return (
-//     <React.Fragment>
-//       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-//         <TableCell>
-//           <IconButton
-//             aria-label="expand row"
-//             size="small"
-//             onClick={() => setOpen(!openC)}
-//           >
-//             {openC ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-//           </IconButton>
-//         </TableCell>
-//         <TableCell component="th" scope="row">
-//           {row.name}
-//         </TableCell>
-//         <TableCell align="right">{row.email}</TableCell>
-//         <TableCell align="right">{row.occupation}</TableCell>
-//         <TableCell align="right">{row.company}</TableCell>
-//         <TableCell align="right">{row.qualifications}</TableCell>
-//       </TableRow>
-//       <TableRow>
-//         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-//           <Collapse in={openC} timeout="auto" unmountOnExit>
-//             <Box sx={{ margin: 1 }}>
-//               <Typography variant="h6" gutterBottom component="div">
-//                 History
-//               </Typography>
-
-//             </Box>
-//           </Collapse>
-//         </TableCell>
-//       </TableRow>
-//     </React.Fragment>
-//   );
-// }
-
-// const ExpandableTableRow = (props, children) => {
-//   const [isExpanded, setIsExpanded] = useState(true);
 
 
-//   const onOpen = () =>{
-//     setIsExpanded(!isExpanded)
-//   }
-//   return (
-//     <>
-    
-//         <TableCell padding="checkbox">
-//           <IconButton  aria-label="expand row"
-//             onClick={() => setIsExpanded(!isExpanded)}>
-//             {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-//           </IconButton>
-//         </TableCell>
-//       {children}
-    
-     
-//       {isExpanded ? (
-//         <TableRow key={props.id}>
-//           <TableCell padding="checkbox" />
-//          <TableCell>{props.reason}</TableCell>
-//         </TableRow>
-//       ): null}
-//     </>
-//   );
-// };
-
-
-
-
-
-
-   // const classes = useStyles();
-
-    // const [page, setPage] = React.useState(0);
-    // const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
-    // const handleChangePage = (event, newPage) => {
-    //   setPage(newPage);
-    // };
-  
-    // const handleChangeRowsPerPage = (event) => {
-    //   setRowsPerPage(+event.target.value);
-    //   setPage(0);
-    // };
-
-    // let USERS = [];
-
-    // for(let i=0; i<data.length; i++){
-
-    //   USERS[i]={
-    //     id: data.id,
-    //     name: data.name,
-    //     email:data.email,
-    //     occupation: data.occupation,
-    //     qualifications: data.qualifications,
-    //     company: data.company,
-    //     reason: data.reason
-    //   }
-    // }
-
-
-    // const theme = createTheme({
-
-    //   palette:{
-    //     primary:{
-    //       main: cyan[500],
-    //     },
-    //     secondary:{
-    //       main: '#00e5ff',
-    //     }
-    //   }
-    // }
-
-    // )
-
-
-  //  const [disable, setDisable] = useState(false)
-  //   const  [removedata, setRemovedata] = useState(data)
-  //   const [testid, setTestid] = useState()
-
-
-  //  const handleSend = () =>{
-
-    
-  //   setDisable(true)
-
-  //  }
-
-  //  const handleRemove = (id) =>{
-  //   const dataCopy = [...data];
-
-  //  // const index = data.findIndex((con)=> con.id === id);
-    
-  //   dataCopy.splice(id, 1);
-  //   setData(dataCopy);
-  // }
-
-  // const rowdata = [
-  //   {}
-
-  // ]
   const [selectedRows, setSelectedRows] = useState([]);
   const [empty, setEmpty] = useState([]);
   const [pageSize, setPageSize]= useState(5)
@@ -328,93 +163,147 @@ const Admin = () => {
    window.location.reload();
   }
 
-  const sendMail = () =>{
+  const sendMail = async (props) =>{
     
     //parsingData(datas)
 
-    emailjs.send('service_pqya14m', 'template_u262k1s', {name: name, occupation: occupation, company: company, to_email: email }, 'mD4Tm6VlbxJIbHSMY')
+   await emailjs.send('service_pqya14m', 'template_u262k1s', {name: props.name, occupation: props.occupation, company: props.company, to_email: props.email }, 'mD4Tm6VlbxJIbHSMY')
     .then((result) => {
         console.log(result.text);
         console.log('Email Sent!')
-       
+         handleClickSnack2()
 
     }, (error) => {
         console.log(error.text);
     });
-
-    return (console.log("SUCCESS SENT MAIL!"))
+   
+    return (console.log("done"))
 
   }
 
-
-
-  const handleDelete= async (datoo) =>{
+  const handleDeleteDecline= async (datoo) =>{
     
    
+
+    datoo.map((datas) =>{
     
-
-    if(selectedRows !== empty){
-
-      datoo.map((datas) =>{
-      
-        setIdd(datas.id)
-      }
-    
-  
-    )
-    console.log("the id is =" + idd)
-
+      //setIdd(datas.id)
+      console.log("the id to be deleted:" +datas.id)
       try{
 
-     
-
-        await axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
-         { data: {id: idd} }
+        axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
+         { data: {id: datas.id} }
         ).then(console.log("DELETED") )
-        
+      //  handleClickSnack() 
   
       }catch(err){
         console.log(`Error: ${err.message}`)
       }
 
-     
-    }else{
-      
-      console.log("EMPTY !")
-      return 
+
+      emailjs.send('service_pqya14m', 'template_u28gjbi', {name: datas.name, to_email:datas.email}, 'mD4Tm6VlbxJIbHSMY')
+      .then((result) => {
+          console.log(result.text);
+          console.log('Email Sent!')
+           
+  
+      }, (error) => {
+          console.log(error.text);
+      });
+
+      handleClickSnack()
     }
+  
+  )
+  //setTimeout(refreshdata(), 5000)
+}
+
+
+  const handleDelete= async (datoo) =>{
+    
+   
+
+      datoo.map((datas) =>{
+      
+        //setIdd(datas.id)
+        console.log("the id to be deleted:" +datas.id)
+        try{
+
+          axios.delete('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/',
+           { data: {id: datas.id} }
+          ).then(console.log("DELETED") )
+        //  handleClickSnack()
+          
+    
+        }catch(err){
+          console.log(`Error: ${err.message}`)
+        }
+      }
+    
+    )
+
+      
+
     //setTimeout(refreshdata(), 5000)
   }
 
 
 
-  const parsingData = (dataa) =>{
+  const parsingData = (daa) =>{
 
-    handleClickOpen()
-    
-    dataa.map((datas) =>{
+  //  handleClickOpen()
+
+   //console.log(selectedRows.name)
+
+    daa.map((datas, index) =>{
+        
+        
         setName(datas.name)
         setEmail(datas.email)
         setOccupation(datas.occupation)
         setCompany(datas.company)
-        setIdd(datas.id)
+        setIdd(datas.id) 
+        console.log(datas.name)
+        console.log(datas.id)
+
+        emailjs.send('service_pqya14m', 'template_u262k1s', {name: datas.name, occupation: datas.occupation, company: datas.company, to_email:datas.email }, 'mD4Tm6VlbxJIbHSMY')
+      .then((result) => {
+        console.log(result.text);
+        console.log('Email Sent!')
+         handleClickSnack2()
+
+
+         const response =  axios.post('https://c8or9cmye3.execute-api.ap-southeast-1.amazonaws.com/dev/profiles', 
+         JSON.stringify({
+      
+           email: datas.email,
+         
+     
+         }))
+     
+         console.log(response.data)
+
+
+    }, (error) => {
+        console.log(error.text);
+    });
+
+       
+       
+        handleDelete(selectedRows)
+        
+           
       }
-    
 
-  )
+      
+      )
 
-  //DO YOU really wanna send
-
-  console.log([name, email, occupation, idd])
-
-  setTimeout(sendMail(), 3000)
-  
-  handleDelete()
-
-  setTimeout(handleDelete(), 3000)
-
+      //post smthing
 
 }
+
+
+
 
 // dialog box
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -423,13 +312,25 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const [open, setOpen] = useState(false);
 
+
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-   refreshdata()
+  const handleClose = (ev) => {
+
+
+    let id = ev.target.id
+
+    if(id ==="clicked"){
+        parsingData()
+    }else{
+      setOpen(false);
+    }
+
+    
+  // refreshdata()
   };
 
 
@@ -437,14 +338,69 @@ const [open, setOpen] = useState(false);
 const handleConfirm = () =>{
 
   setOpen(false);
-  setTimeout(parsingData(selectedRows), 5000)
-  setTimeout(refreshdata(), 5000)
+  //parsingData()
+  // setTimeout(parsingData(selectedRows), 5000)
+  // setTimeout(refreshdata(), 5000)
   
 }
 
+const submitDelete = (data) => {
 
+  confirmAlert({
+    title: 'Confirm to submit',
+    message: 'Are you sure to do this.',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => handleDelete(data)
+      },
+      {
+        label: 'No',
+        //onClick: () => alert('Click No')
+      }
+    ]
+  });
+}
   
 
+//first snack bar
+const [opensnack, setOpenSnack] = React.useState(false);
+
+    const handleClickSnack = () => {
+     setOpenSnack(true);
+   };
+
+    const handleCloseSnack = (event, reason) => {
+     if (reason === 'clickaway') {
+       return;
+     }
+ 
+     setOpenSnack(false);
+   };
+
+   const Alert = React.forwardRef(function Alert(props, ref) {
+     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
+   
+   //second snackbar
+
+   const [opensnack2, setOpenSnack2] = React.useState(false);
+
+    const handleClickSnack2 = () => {
+     setOpenSnack2(true);
+   };
+
+    const handleCloseSnack2 = (event, reason) => {
+     if (reason === 'clickaway') {
+       return;
+     }
+ 
+     setOpenSnack2(false);
+   };
+
+   const Alert2 = React.forwardRef(function Alert(props, ref) {
+     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+   });
  
 
   const columns = [
@@ -502,6 +458,7 @@ const handleConfirm = () =>{
                 );
       
                 setSelectedRows(selectedRows);
+                console.log(selectedRows)
               }}
 
 
@@ -521,7 +478,7 @@ const handleConfirm = () =>{
                 </Grid>
 
                 <Grid item >
-                <Button onClick={()=> {handleDelete(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  >
+                <Button onClick={()=> {handleDeleteDecline(selectedRows)}} sx={{backgroundColor: "#56e8e3"}} variant="contained" size="large"  >
                    Decline Request
                  </Button>
 
@@ -533,7 +490,7 @@ const handleConfirm = () =>{
               </Grid>
 
                 <div>
-              <Dialog
+              {/* <Dialog
                 open={open}
                 TransitionComponent={Transition}
                 keepMounted
@@ -544,21 +501,31 @@ const handleConfirm = () =>{
                 <DialogContent>
                   <DialogContentText id="alert-dialog-slide-description">
                     Approving will trigger sending an invitation email to the selected requestors: 
-                    Name: {name}  |  Email: {email}.
+                   Name: {name}  |  Email: {email}.
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={handleConfirm}>Confirm</Button>
+                  <Button id="clicked" onClick={handleClose}>Confirm</Button>
                 </DialogActions>
-              </Dialog>
+              </Dialog> */}
               </div>
               {/* {
                 parsingData(selectedRows)
               } */}
-                 
+                 <SnackbarProvider>
+                 <Snackbar open={opensnack} autoHideDuration={4500} onClose={handleCloseSnack}>
+              <Alert onClose={handleCloseSnack} severity="info" sx={{ width: '100%' }}>
+                Reject Email Sent to Requestor !
+              </Alert>
+            </Snackbar> 
 
-             
+            <Snackbar open={opensnack2} autoHideDuration={4500} onClose={handleCloseSnack2}>
+              <Alert2 onClose={handleCloseSnack2} severity="success" sx={{ width: '100%' }}>
+                Sign Up Invitation Email Sent !
+              </Alert2>
+            </Snackbar> 
+            </SnackbarProvider>
                  
               {/* <pre style={{ fontSize: 30 }}>
                 {JSON.stringify(selectedRows, null, 4)}
