@@ -34,10 +34,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RPuser from '../../pages/RPuser';
 import { mail } from '../../pages/RPuser';
 
+import Stack from '@mui/material/Stack';
 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 export const LoginTitle = styled.h1`
 color: #000;
 font-size: 35px;
+font-family: 'Helvetica';
 text-align: center;
 letter-spacing: 1px;
 line-height: 60px;
@@ -68,6 +72,24 @@ const LoginContext = createContext();
 
 const LogIn = (props) => {
 
+  
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const [openSnack, setOpenSnack] = React.useState(false);
+
+  const handleClickSnack = () => {
+    setOpenSnack(true);
+  };
+
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnack(false);
+  };
   // const userAttributes = {
   //   phone_number: '',
   //   preferred_username: ''
@@ -90,15 +112,6 @@ const LogIn = (props) => {
     window.location.reload();
   }
 
-  // function usePersistedState(key, defaultValue) {
-  //   const [state, setState] = React.useState(
-  //     () => JSON.parse(localStorage.getItem(key)) || defaultValue
-  //   );
-  //   useEffect(() => {
-  //     localStorage.setItem(key, JSON.stringify(state));
-  //   }, [key, state]);
-  //   return [state, setState];
-  // }
 
 
   const onSubmit = event => {
@@ -114,6 +127,7 @@ const LogIn = (props) => {
     })
     .catch(err =>{
         console.error('Failed to Log In!', err)
+        handleClickSnack()
     });
 
    // loadRefreshContent();
@@ -135,6 +149,7 @@ const LogIn = (props) => {
     })
     .catch(err =>{
         console.error('Failed to Log In!', err)
+        handleClickSnack()
     })
 
     
@@ -176,11 +191,11 @@ const LogIn = (props) => {
 
   const style = {
     position: 'absolute',
-    top: '50%',
+    top: '52%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 480,
-    height: 700,
+    minHeight: 760,
     bgcolor: 'background.paper',
     alignItems:'center',
     justifyContent:'center',
@@ -237,6 +252,8 @@ const LogIn = (props) => {
   return(
 
     <>
+
+      
     <Divforbut >
     <Button variant="contained" size="large" theme={customTheme} onClick={handleOpen} >Specialist Sign In</Button>
     {open? <Modal
@@ -245,11 +262,11 @@ const LogIn = (props) => {
     aria-labelledby="modal-modal-title"
     aria-describedby="modal-modal-description"
   >
-
+     
    <Box sx={style}  alignItems="center"
         justifyContent="center" >
      
-  
+     
       <Grid
           container
           spacing={3}
@@ -307,7 +324,13 @@ const LogIn = (props) => {
         </Grid>
         
           
-
+        <div>
+    <Snackbar open={openSnack} autoHideDuration={4000} onClose={handleCloseSnack} anchorOrigin={{vertical:'bottom' , horizontal:'center'}}>
+        <Alert onClose={handleCloseSnack} severity="error" sx={{ width: '100%' }}>
+        Incorrect username or password !
+        </Alert>
+      </Snackbar>
+      </div>
      
     </Box>
    
@@ -385,7 +408,13 @@ const LogIn = (props) => {
          <Button variant="contained" size="medium" theme={customThemew} onClick={handleClose1}>Cancel</Button>
          </Grid>
         </Grid>
-        
+        <div>
+    <Snackbar open={openSnack} autoHideDuration={4000} onClose={handleCloseSnack} anchorOrigin={{vertical:'bottom' , horizontal:'center'}}>
+        <Alert onClose={handleCloseSnack} severity="error" sx={{ width: '100%' }}>
+        Incorrect username or password !
+        </Alert>
+      </Snackbar>
+      </div>
           
 
      
