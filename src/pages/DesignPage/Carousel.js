@@ -46,7 +46,7 @@ export const ButtonContainer = styled(Row)`
 		display:block;
 	margin-bottom:auto;
 	& svg {
-		margin: 0 1rem;
+		margin: 1 3px;
 		cursor: pointer;
 	}
 	& svg:hover {

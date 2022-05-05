@@ -28,7 +28,7 @@ import {
 import axios from 'axios';
 
 export const TextWrapper = styled.div`
-    margin auto    
+    margin: auto    
     align-items: center;
    // max-width: 540px;
     padding-top: 15px;
@@ -82,8 +82,8 @@ export const ExploreCon = styled.div`
     flex-direction: column
     justify-content: center;
     align-items: center;
-    padding: 0 30px;
-    height: 690px;
+    padding: 100px 30px;
+    min-height: 690px;
     position: relative;
     z-index: 1;
 
@@ -98,6 +98,10 @@ export const ExploreCon = styled.div`
     //     z-index: 2;
 
     // }
+
+    @media screen and(max-width: 480px){
+      display:block;
+    }
 
 
 `
@@ -227,6 +231,7 @@ const Explore = () => {
               <HeroH1>Planning For Your Home? or Office.</HeroH1>
             </HeroContent>
             
+            <div>
             <Grid container sx={{ flexGrow:2}}  spacing={10}>
 
             <Grid item>
@@ -272,7 +277,7 @@ const Explore = () => {
             </Grid>
 
             </Grid>
-           
+            </div>
             {/* <HeroContent>
                 <HeroH1>Explore Page Coming Soon...</HeroH1>
             </HeroContent> */}

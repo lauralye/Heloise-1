@@ -124,7 +124,7 @@ export const Formwrapper = styled.div`
             // max-width: 600px;
            
             padding: 26px 30px;
-          //  margin-top: 60px;
+            margin-top: 150px;
             background-color: white;
             box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
             border-radius: 12px;
@@ -148,26 +148,23 @@ export const Formwrapper2 = styled.div`
 
 
 
-            //display: flex;
-            position: absolute;
+            display: block;
+            position: fixed;
             flex-direction: column
             align-items: center;
             justify-content: center;
-            width: 400px;
+            min-width: 300px;
             flex:1;
-             height: 450px;
-            
-
-            // max-width: 600px;
-           
-            padding: 26px 30px;
-          //  margin-top: 60px;
+            min-height: 100px;
+            text-align: center;
+            padding: 40px 30px;
+         
             background-color: white;
-            box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+            box-shadow: 0 10px 25px rgba(92, 99, 105, .1);
             border-radius: 12px;
-           // min-height: 300px;
+           
             overflow: hidden;
-            left: 50px;
+            left: 60px;
             top: 700px;
 
             @media screen and (max-width: 768px) {
