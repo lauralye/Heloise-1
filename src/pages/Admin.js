@@ -406,11 +406,11 @@ const [opensnack, setOpenSnack] = React.useState(false);
   const columns = [
     { field: 'id', headerName: 'ID', width: 35 },
     { field: 'name', headerName: 'Requestor Name', width: 150 },
-    { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'occupation', headerName: 'Occupation', width: 150},
-    { field: 'company', headerName: 'Company', width: 110},
-    { field: 'qualifications', headerName: 'Qualifications', width: 280 },
-    { field: 'reason', headerName: 'Reason to Join', width: 350 },
+    { field: 'email', headerName: 'Email', width: 230 },
+    { field: 'occupation', headerName: 'Occupation', width: 210},
+    { field: 'company', headerName: 'Company', width: 135},
+    { field: 'qualifications', headerName: 'Qualifications', width: 400 },
+    { field: 'reason', headerName: 'Reason to Join', width: 370 },
 ];
   return (
     
